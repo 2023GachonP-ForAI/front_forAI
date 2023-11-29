@@ -18,7 +18,7 @@ class _OnBoardingstate extends State<OnBoarding> {
         body: Stack(children: [
       Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 28, 91, 30),
+          color: Color.fromARGB(255, 38, 118, 41),
         ),
       ),
       const Align(
@@ -54,7 +54,7 @@ class _OnBoardingstate extends State<OnBoarding> {
               child: TextButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Sound()));
+                        MaterialPageRoute(builder: (context) => const Rec()));
                   },
                   child: const Text(
                     '통통 두드리기',
@@ -69,7 +69,7 @@ class _OnBoardingstate extends State<OnBoarding> {
               child: TextButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Sound()));
+                        MaterialPageRoute(builder: (context) => const Rec()));
                   },
                   child: const Text(
                     '찰칵 사진찍기',
