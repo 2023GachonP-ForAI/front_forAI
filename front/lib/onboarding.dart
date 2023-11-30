@@ -32,9 +32,11 @@ class _OnBoardingstate extends State<OnBoarding> {
             Text(
               '통통',
               style: TextStyle(
-                  fontSize: 60, color: Color.fromARGB(255, 188, 28, 17)),
+                  fontSize: 70,
+                  color: Color.fromARGB(255, 188, 28, 17),
+                  fontFamily: 'DoH'),
             ),
-            Text('수박이 왔어요', style: TextStyle(fontSize: 60))
+            Text('수박이 왔어요', style: TextStyle(fontSize: 60, fontFamily: 'DoH'))
           ],
         ),
       ),
