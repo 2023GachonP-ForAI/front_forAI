@@ -38,6 +38,9 @@ dependencies:
   record: ^4.4.4
   audioplayers: ^4.1.0
   path_provider: ^2.1.1
+  loading_animation_widget: ^1.2.0+4
+  http: ^0.13.6
+  http_parser: ^4.0.2
 
 dev_dependencies:
   flutter_test:

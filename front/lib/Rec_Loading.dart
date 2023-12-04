@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class RecLoading extends StatefulWidget {
   final String path;
@@ -22,7 +23,12 @@ class _RecLoadingState extends State<RecLoading> {
           onPressed: () {
             _playAudio();
           },
-          child: const Text('Play Recorded Audio'),
+          child: Column(
+            children: [
+              const Text('Play Recorded Audio'),
+              LoadingAnimationWidget.hexagonDots(color: Colors.red, size: 200)
+            ],
+          ),
         ),
       ),
     );

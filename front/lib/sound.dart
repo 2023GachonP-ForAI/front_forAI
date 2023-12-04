@@ -6,6 +6,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'Rec_Loading.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class Rec extends StatefulWidget {
   const Rec({super.key});
@@ -32,6 +34,22 @@ class _RecState extends State<Rec> {
       setState(() => _recordState = recordState);
     });
     super.initState();
+  }
+
+  // 녹음 전송
+  Future<void> sendRecord() async {
+    // String audioUrl = widget.path;
+    String recordName = path!.split('/').last;
+    var url = Uri.parse('/record/send');
+    var request = http.MultipartRequest('POST', url);
+    request.files.add(
+      await http.MultipartFile.fromPath('recordUrl', path!,
+          contentType: MediaType('audio', 'x-wav')),
+    );
+    request.fields['recordName'] = recordName;
+    var response = await request.send();
+    if (response.statusCode == 200) {
+    } else {}
   }
 
   Future<void> _start() async {
@@ -177,6 +195,7 @@ class _RecState extends State<Rec> {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      // 확인을 클릭했을 때, 서버로 전송
                       Navigator.push(
                         context,
                         MaterialPageRoute(
