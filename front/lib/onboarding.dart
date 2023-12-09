@@ -52,6 +52,8 @@ class _OnBoardingstate extends State<OnBoarding> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
+              width: 200,
+              height: 50,
               color: const Color.fromARGB(255, 188, 28, 17),
               child: TextButton(
                   onPressed: () {
@@ -59,25 +61,26 @@ class _OnBoardingstate extends State<OnBoarding> {
                         MaterialPageRoute(builder: (context) => const Rec()));
                   },
                   child: const Text(
-                    '통통 두드리기',
-                    style: TextStyle(color: Colors.black),
+                    '시작하기',
+                    style: TextStyle(
+                        color: Colors.black, fontFamily: 'DoH', fontSize: 25),
                   )),
             ),
-            const SizedBox(
-              width: 70,
-            ),
-            Container(
-              color: const Color.fromARGB(255, 188, 28, 17),
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Rec()));
-                  },
-                  child: const Text(
-                    '찰칵 사진찍기',
-                    style: TextStyle(color: Colors.black),
-                  )),
-            )
+            // const SizedBox(
+            //   width: 70,
+            // ),
+            // Container(
+            //   color: const Color.fromARGB(255, 188, 28, 17),
+            //   child: TextButton(
+            //       onPressed: () {
+            //         Navigator.push(context,
+            //             MaterialPageRoute(builder: (context) => const Rec()));
+            //       },
+            //       child: const Text(
+            //         '찰칵 사진찍기',
+            //         style: TextStyle(color: Colors.black),
+            //       )),
+            // )
           ],
         ),
       ),

@@ -29,7 +29,7 @@ class _RecLoadingState extends State<RecLoading> {
       var uri = Uri.parse(
           'http://ceprj.gachon.ac.kr:60019/result/sweet'); // 서버 엔드포인트를 설정
       var request = http.MultipartRequest('POST', uri);
-      print(widget.path);
+      //    print(widget.path);
       // request.files.add(await http.MultipartFile.fromPath('file', widget.path));
 
       request.files.add(
@@ -39,13 +39,13 @@ class _RecLoadingState extends State<RecLoading> {
 
       var response = await request.send();
 
-      print(response.statusCode);
+      // print(response.statusCode);
 
       // 응답을 받을 때까지 대기
       var responseBody = await http.Response.fromStream(response);
 
-      print(responseBody.statusCode);
-      print(responseBody.body);
+      //  print(responseBody.statusCode);
+      // print(responseBody.body);
 
       if (response.statusCode == 200) {
         var jsonData = json.decode(responseBody.body);
@@ -82,15 +82,30 @@ class _RecLoadingState extends State<RecLoading> {
           //       _playAudio();
           //     },
           //     child:
-          Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          //        const Text('Play Recorded Audio'),
-          LoadingAnimationWidget.hexagonDots(color: Colors.red, size: 200)
-        ],
-        //  ),
-        //  ),
-      ),
+          Stack(children: [
+        Container(
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 38, 118, 41),
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              '열심히 분석 중이에요!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30, fontFamily: 'DoH'),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            //        const Text('Play Recorded Audio'),
+            LoadingAnimationWidget.hexagonDots(color: Colors.red, size: 200)
+          ],
+          //  ),
+          //  ),
+        ),
+      ]),
     );
   }
 
