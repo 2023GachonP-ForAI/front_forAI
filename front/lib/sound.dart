@@ -86,6 +86,14 @@ class _RecState extends State<Rec> {
     return directory.path;
   }
 
+  void _startTimer() {
+    _timer?.cancel();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      setState(() => _recordDuration++);
+    });
+  }
+
   Future<void> _stop() async {
     setState(() {
       stopped = true;
@@ -111,37 +119,33 @@ class _RecState extends State<Rec> {
     await audioPlayer.play(DeviceFileSource(path_copy));
   }
 
-  void _startTimer() {
-    _timer?.cancel();
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      setState(() => _recordDuration++);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: [
       Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 28, 91, 30),
+          color: Color.fromARGB(255, 38, 118, 41),
         ),
       ),
-      const Align(
+      Align(
         alignment: Alignment.topCenter,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 70,
+            const SizedBox(
+              height: 100,
             ),
-            Text(
-              '30초 동안',
+            const Text(
+              '10초 동안',
               style: TextStyle(
-                  fontSize: 40, color: Color.fromARGB(255, 188, 28, 17)),
+                  fontSize: 40,
+                  color: Color.fromARGB(255, 188, 28, 17),
+                  fontFamily: 'DoH'),
             ),
-            Text('수박을 두드려 주세요', style: TextStyle(fontSize: 40))
+            const Text('수박을 두드려 주세요',
+                style: TextStyle(fontSize: 40, fontFamily: 'DoH')),
+            _buildText(),
           ],
         ),
       ),
@@ -188,6 +192,8 @@ class _RecState extends State<Rec> {
             title: const Center(
                 child: Text(
               '확인을 누르면 \n당도를 측정해드려요!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontFamily: 'DoH'),
             )),
             actions: [
               Row(
@@ -209,15 +215,15 @@ class _RecState extends State<Rec> {
                       width: 100,
                       height: 70,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(255, 26, 255, 91),
-                      ),
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(255, 208, 86, 86)),
                       child: const Center(
                           child: Text(
                         '확인',
                         style: TextStyle(
-                          color: Colors.black,
-                        ),
+                            color: Colors.black,
+                            fontFamily: 'DoH',
+                            fontSize: 20),
                       )),
                     ),
                   ),
@@ -235,14 +241,15 @@ class _RecState extends State<Rec> {
                       height: 70,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color.fromARGB(255, 26, 255, 91),
+                        color: const Color.fromARGB(255, 208, 86, 86),
                       ),
                       child: const Center(
                           child: Text(
                         '취소',
                         style: TextStyle(
-                          color: Colors.black,
-                        ),
+                            color: Colors.black,
+                            fontFamily: 'DoH',
+                            fontSize: 20),
                       )),
                     ),
                   ),
@@ -253,6 +260,33 @@ class _RecState extends State<Rec> {
         ),
       )
     ]));
+  }
+
+  Widget _buildText() {
+    if (_recordState != RecordState.stop) {
+      return _buildTimer();
+    } else {
+      return Container();
+    }
+  }
+
+  Widget _buildTimer() {
+    final String minutes = _formatNumber(_recordDuration ~/ 60);
+    final String seconds = _formatNumber(_recordDuration % 60);
+
+    return Text(
+      '$minutes : $seconds',
+      style: const TextStyle(color: Colors.red, fontSize: 30),
+    );
+  }
+
+  String _formatNumber(int number) {
+    String numberStr = number.toString();
+    if (number < 10) {
+      numberStr = '0$numberStr';
+    }
+
+    return numberStr;
   }
 
   @override
