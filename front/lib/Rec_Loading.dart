@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import './result.dart';
 import 'dart:convert';
 import 'package:http_parser/http_parser.dart';
+import 'dart:async';
 
 class RecLoading extends StatefulWidget {
   final String path;
@@ -54,12 +55,21 @@ class _RecLoadingState extends State<RecLoading> {
         //     _sweetResult = int.parse(responseBody.body);
 
         print("당도결과 $_sweetResult");
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Result(sweetResult: _sweetResult),
-          ),
-        );
+
+        Timer(const Duration(seconds: 2), () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Result(sweetResult: _sweetResult),
+            ),
+          );
+        });
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => Result(sweetResult: _sweetResult),
+        //   ),
+        // );
       } else {
         print(
             'Failed to upload file. Server responded with status ${response.statusCode}');

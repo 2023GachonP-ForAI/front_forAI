@@ -137,7 +137,7 @@ class _RecState extends State<Rec> {
               height: 100,
             ),
             const Text(
-              '10초 동안',
+              '5초 동안',
               style: TextStyle(
                   fontSize: 40,
                   color: Color.fromARGB(255, 188, 28, 17),

@@ -40,11 +40,14 @@ class _OnBoardingstate extends State<OnBoarding> {
           ],
         ),
       ),
-      Center(
-          child: Image.asset(
-        'lib/images/watermelon_main.png',
-        height: 350,
-      )),
+      Padding(
+        padding: const EdgeInsets.only(top: 40),
+        child: Center(
+            child: Image.asset(
+          'lib/images/watermelon_main.png',
+          height: 350,
+        )),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 700),
         child: Row(
