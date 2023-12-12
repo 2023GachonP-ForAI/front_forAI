@@ -40,13 +40,13 @@ class _ResultState extends State<Result> {
               const SizedBox(
                 height: 40,
               ),
-              if (widget.sweetResult == 1)
+              if (widget.sweetResult == 0)
                 Image.asset('lib/images/bad_result.png',
                     width: 300, height: 300), // 이미지1
-              if (widget.sweetResult == 2)
-                Image.asset('lib/images/soso_result.png',
-                    width: 300, height: 300), // 이미지2
-              if (widget.sweetResult == 3)
+              // if (widget.sweetResult == 1)
+              //   Image.asset('lib/images/soso_result.png',
+              //       width: 300, height: 300), // 이미지2
+              if (widget.sweetResult == 1)
                 Image.asset('lib/images/good_result.png',
                     width: 300, height: 300), // 이미지3
               // 추가적인 조건이 있다면 여기에 계속해서 else if 문 추가
@@ -55,7 +55,7 @@ class _ResultState extends State<Result> {
                 height: 40,
               ),
               // Text(widget.sweetResult.toString())
-              if (widget.sweetResult == 1)
+              if (widget.sweetResult == 0)
                 RichText(
                   textAlign: TextAlign.center,
                   text: const TextSpan(
@@ -77,9 +77,35 @@ class _ResultState extends State<Result> {
                     ],
                   ),
                 ),
-              if (widget.sweetResult == 2)
-                Image.asset('lib/images/soso_result.png',
-                    width: 300, height: 300), // 이미지2
+              if (widget.sweetResult == 1)
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '맛있는 ',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 77, 65),
+                            fontSize: 35,
+                            fontFamily: 'DoH'), // 첫 번째 줄 텍스트 컬러
+                      ),
+                      TextSpan(
+                        text: '수박이에요!🍉\n',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 35,
+                            fontFamily: 'DoH'), // 첫 번째 줄 텍스트 컬러
+                      ),
+                      TextSpan(
+                        text: '감이 좋으시네요👍',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'DoH',
+                            fontSize: 35), // 두 번째 줄 텍스트 컬러
+                      ),
+                    ],
+                  ),
+                ),
               if (widget.sweetResult == 3)
                 Image.asset('lib/images/good_result.png',
                     width: 300, height: 300), // 이미지3
