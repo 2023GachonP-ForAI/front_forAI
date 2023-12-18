@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front/onboarding.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -57,6 +59,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // 풀스크린 만들기
+    // 반드시 여기서 불러줘야 하는 것은 아니다.
+    // 앱 실행 중간에 전환을 해야할 경우 그 시점에서 불러줘도 무방하다.
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  }
+
   int _counter = 0;
 
   void _incrementCounter() {
@@ -72,6 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    debugShowCheckedModeBanner:
+    false;
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
